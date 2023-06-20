@@ -10,6 +10,9 @@ class Checking:
         assert status_code == response.status_code, f"Ошибка! Статус код не верный: {response.status_code}"
         print("Статус код верный: " + str(response.status_code))
 
+
+    """"Методы проверки списка пользователей"""
+
     @staticmethod
     def check_json_response(response: Response, expected_value):
         token = json.loads(response.text)
@@ -21,9 +24,19 @@ class Checking:
     def check_data_response(response: Response, expected_keys):
         token = json.loads(response.text)
         data_objects = token.get('data', [])
-
         for item in data_objects:
             assert all(key in item for key in expected_keys), f"Ошибка! Обязательные поля пользователя " \
                                                               f"не совпадают: {response.text}"
+        print("Обязательные поля пользователя не совпадают")
 
-        print("Все обязательные поля пользователя совпадают")
+
+        """"Методы проверки информации о пользователе"""
+
+    @staticmethod
+    def check_info_single_user(response: Response, expected_keys):
+        token = json.loads(response.text)
+        data_object = token.get('data', {})
+        data_keys = set(data_object.keys())
+        assert data_keys == expected_keys, f"Ошибка! Обязательные поля информации о пользователе" \
+                                           f" отсутствуют: {response.text}"
+        print("Обязательные поля пользователя не совпадают")
