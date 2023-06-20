@@ -27,7 +27,7 @@ class Checking:
         for item in data_objects:
             assert all(key in item for key in expected_keys), f"Ошибка! Обязательные поля пользователя " \
                                                               f"не совпадают: {response.text}"
-        print("Обязательные поля пользователя не совпадают")
+        print("Обязательные поля пользователя совпадают")
 
 
         """"Методы проверки информации о пользователе"""
@@ -39,4 +39,4 @@ class Checking:
         data_keys = set(data_object.keys())
         assert data_keys == expected_keys, f"Ошибка! Обязательные поля информации о пользователе" \
                                            f" отсутствуют: {response.text}"
-        print("Обязательные поля пользователя не совпадают")
+        print("Обязательные поля пользователя совпадают")
