@@ -34,3 +34,41 @@ class ReqResApi:
         print(get_single_user_not_found_url)
         result_get_single_user_not_found = Methods.get(get_single_user_not_found_url)
         return result_get_single_user_not_found
+
+    @staticmethod
+    def create_user():
+        """Метод создания пользователя"""
+
+        create_resource = "/api/users"
+        json_create = {
+            "name": "morpheus",
+            "job": "leader"
+        }
+        create_url = base_url + create_resource
+        print(create_url)
+        result_create = Methods.post(create_url, json_create)
+        return result_create
+
+    @staticmethod
+    def update_user():
+        """Метод изменения данных пользователя"""
+
+        update_resource = "/api/users/2"
+        json_update = {
+            "name": "morpheus",
+            "job": "zion resident"
+        }
+        update_url = base_url + update_resource
+        print(update_url)
+        result_update = Methods.put(update_url, json_update)
+        return result_update
+
+    @staticmethod
+    def delete_user():
+        """Метод удаления пользователя"""
+
+        delete_resource = "/api/users/2"
+        delete_url = base_url + delete_resource
+        print(delete_url)
+        result_delete = Methods.delete(delete_url)
+        return result_delete

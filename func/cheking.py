@@ -30,7 +30,7 @@ class Checking:
         print("Обязательные поля пользователя совпадают")
 
 
-        """"Методы проверки информации о пользователе"""
+    """"Методы проверки информации о пользователе"""
 
     @staticmethod
     def check_info_single_user(response: Response, expected_keys):
@@ -40,3 +40,10 @@ class Checking:
         assert data_keys == expected_keys, f"Ошибка! Обязательные поля информации о пользователе" \
                                            f" отсутствуют: {response.text}"
         print("Обязательные поля пользователя совпадают")
+
+    @staticmethod
+    def check_json_value(response: Response, fild_name, expected_value):
+        check = response.json()
+        check_info = check.get(fild_name)
+        assert check_info == expected_value, f"Содержимое поля {fild_name} неверное: {check_info}"
+        print(f"Содержимое поля {fild_name} верное: {check_info}")

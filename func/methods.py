@@ -21,8 +21,8 @@ class Methods:
         return result_put
 
     @staticmethod
-    def delete(url, body):
-        result_delete = requests.delete(url, json=body, headers=Methods.headers, cookies=Methods.cookie)
+    def delete(url):
+        result_delete = requests.delete(url, headers=Methods.headers, cookies=Methods.cookie)
         return result_delete
 
     @staticmethod
