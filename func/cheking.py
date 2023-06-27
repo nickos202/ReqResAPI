@@ -47,3 +47,11 @@ class Checking:
         check_info = check.get(fild_name)
         assert check_info == expected_value, f"Содержимое поля {fild_name} неверное: {check_info}"
         print(f"Содержимое поля {fild_name} верное: {check_info}")
+
+    @staticmethod
+    def check_json_register_mock(response: Response, expected_value):
+        check = response.json()
+        for key in expected_value:
+            assert key in check, f"Ответ не содержит обязательный ключ: {key}"
+
+        print("Ответ содержит все обязательные ключи")

@@ -72,3 +72,23 @@ class ReqResApi:
         print(delete_url)
         result_delete = Methods.delete(delete_url)
         return result_delete
+
+
+class Mockoon(ReqResApi):
+
+
+    @staticmethod
+    def post_register():
+
+        """Метод регистрации нового пользователя c использованием Mock сервера"""
+        mock_url = "http://localhost:3000"
+        register_resource = "/api/register"
+        json_register = {
+            "email": "eve.holt@reqres.in",
+            "password": "pistol"
+        }
+        register_url = mock_url + register_resource
+        print(register_url)
+        result_post_register = Methods.post(register_url, json_register)
+        print(result_post_register.text)
+        return result_post_register
