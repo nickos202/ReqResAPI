@@ -1,5 +1,6 @@
 from func.methods import Methods
 base_url = "https://reqres.in" # базовая URL
+mock_url = "http://localhost:3000"
 
 
 class ReqResApi:
@@ -81,7 +82,7 @@ class Mockoon(ReqResApi):
     def post_register():
 
         """Метод регистрации нового пользователя c использованием Mock сервера"""
-        mock_url = "http://localhost:3000"
+
         register_resource = "/api/register"
         json_register = {
             "email": "eve.holt@reqres.in",
@@ -90,5 +91,47 @@ class Mockoon(ReqResApi):
         register_url = mock_url + register_resource
         print(register_url)
         result_post_register = Methods.post(register_url, json_register)
-        print(result_post_register.text)
         return result_post_register
+
+    @staticmethod
+    def post_register_unsuccessful():
+
+        """Метод регистрации нового пользователя c использованием Mock сервера - негативная проверка"""
+
+        register_resource = "/api/register"
+        json_register = {
+            "email": "eve.holt@reqres.in"
+        }
+        register_url = mock_url + register_resource
+        print(register_url)
+        result_post_register = Methods.post(register_url, json_register)
+        return result_post_register
+
+    @staticmethod
+    def post_login_successful():
+
+        """Метод авторизации пользователя c использованием Mock сервера"""
+
+        login_resource = "/api/login"
+        json_login = {
+            "email": "eve.holt@reqres.in",
+            "password": "pistol"
+        }
+        login_url = mock_url + login_resource
+        print(login_url)
+        result_post_login = Methods.post(login_url, json_login)
+        return result_post_login
+
+    @staticmethod
+    def post_login_unsuccessful():
+
+        """Метод авторизации пользователя c использованием Mock сервера - негативная проверка"""
+
+        login_resource = "/api/login"
+        json_login = {
+            "email": "eve.holt@reqres.in"
+        }
+        login_url = mock_url + login_resource
+        print(login_url)
+        result_post_login = Methods.post(login_url, json_login)
+        return result_post_login
