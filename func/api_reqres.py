@@ -79,7 +79,7 @@ class Mockoon(ReqResApi):
 
 
     @staticmethod
-    def post_register():
+    def post_register_successful():
 
         """Метод регистрации нового пользователя c использованием Mock сервера"""
 
