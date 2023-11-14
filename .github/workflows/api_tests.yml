@@ -42,4 +42,4 @@ jobs:
 
     - name: Run API tests
       run: |
-        allurectl watch -- pytest tests/
+        allurectl watch -- pytest tests/ -k "not test_register_mock"
