@@ -22,6 +22,22 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Run API tests
+    # Step 1: Download allurectl utility
+    - name: Download allurectl
+      uses: allure-framework/setup-allurectl@v1
+
+    # Step 2: Run allurectl job-run to create a test plan file
+    - name: Create Allure TestOps test plan
       run: |
-        pytest tests/ -k "not test_register_mock"
+        allurectl job-run create \
+          --endpoint ${{ secrets.ALLURE_ENDPOINT }} \
+          --project-id ${{ secrets.ALLURE_PROJECT_ID }} \
+          --token ${{ secrets.ALLURE_TOKEN }} \
+          --name "Your Test Plan Name" \
+          --results-directory "build/allure-results"
+
+    # Step 3: Run tests and wrap with allurectl watch
+    - name: Run API tests with Allure integration
+      run: |
+        allurectl watch --allure-results "build/allure-results" \
+          pytest tests/ -k "not test_register_mock"
