@@ -4,8 +4,8 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      ALLURE_JOB_RUN_ID:
-      ALLURE_USERNAME:
+      ALLURE_JOB_RUN_ID: 232
+      ALLURE_USERNAME: nickos202
     branches:
       - master
 
