@@ -41,5 +41,6 @@ jobs:
 
     - name: Run API tests
       run: |
+        mkdir allure-results
         pytest tests/ -k "not test_register_mock"
         mv allure-results $GITHUB_WORKSPACE
