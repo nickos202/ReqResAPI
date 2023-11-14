@@ -40,4 +40,5 @@ jobs:
         allure-project-id: 232
 
     - name: Run API tests
-      run: allurectl watch pytest tests/ -k "not test_register_mock" --dir "allure-results"
+      run: allurectl run pytest tests/ -k "not test_register_mock"
+           allurectl report generate --clean
