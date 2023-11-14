@@ -2,8 +2,19 @@ name: API Tests
 
 on:
   push:
+  workflow_dispatch:
+    inputs:
+      ALLURE_JOB_RUN_ID:
+      ALLURE_USERNAME:
     branches:
       - master
+
+env:
+  ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+  ALLURE_ENDPOINT: https://ithouse.testops.cloud/
+  ALLURE_PROJECT_ID: 232
+  ALLURE_RESULTS: allure-results
 
 jobs:
   test:
@@ -22,22 +33,6 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    # Step 1: Download allurectl utility
-    - name: Download allurectl
-      uses: allure-framework/setup-allurectl@v1
-
-    # Step 2: Run allurectl job-run to create a test plan file
-    - name: Create Allure TestOps test plan
+    - name: Run API tests
       run: |
-        allurectl job-run create \
-          --endpoint ${{ secrets.ALLURE_ENDPOINT }} \
-          --project-id ${{ secrets.ALLURE_PROJECT_ID }} \
-          --token ${{ secrets.ALLURE_TOKEN }} \
-          --name "Your Test Plan Name" \
-          --results-directory "build/allure-results"
-
-    # Step 3: Run tests and wrap with allurectl watch
-    - name: Run API tests with Allure integration
-      run: |
-        allurectl watch --allure-results "build/allure-results" \
-          pytest tests/ -k "not test_register_mock"
+        pytest tests/ -k "not test_register_mock"
