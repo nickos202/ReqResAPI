@@ -30,8 +30,7 @@ jobs:
         python-version: 3.11
 
     - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      run: pip install -r requirements.txt
   
     - name: Install allurectl
       uses: allure-framework/setup-allurectl@v1
@@ -41,5 +40,4 @@ jobs:
         allure-project-id: 232
 
     - name: Run API tests
-      run: |
-        allurectl watch -- pytest tests/ -k "not test_register_mock"
+      run: allurectl watch -- pytest tests/ -k "not test_register_mock"
