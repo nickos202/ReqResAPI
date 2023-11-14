@@ -36,9 +36,9 @@ jobs:
     - name: Install allurectl
       uses: allure-framework/setup-allurectl@v1
       with:
-        allure-endpoint: $(ALLURE_ENDPOINT)
+        allure-endpoint: ${{ ALLURE_ENDPOINT }}
         allure-token: ${{ secrets.ALLURE_TOKEN }}
-        allure-project-id: $(ALLURE_PROJECT_ID)
+        allure-project-id: ${{ ALLURE_PROJECT_ID }}
 
     - name: Run API tests
       run: |
