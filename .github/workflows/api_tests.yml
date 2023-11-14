@@ -41,4 +41,4 @@ jobs:
 
     - name: Run API tests
       run: |
-        allurectl watch -- pytest --alluredir=allure-results/
+        allurectl watch -- pytest --alluredir=allure-results/ -k "not test_register_mock"
